@@ -37,9 +37,10 @@ flowchart TD
     BL --> SCORE["score_song: genre and mood match plus closeness on numeric features"]
     SCORE --> RANK["recommend_songs: sort and return top K with reasons"]
 
-    RANK --> CONF["Confidence score: MBTI-only is low, with history is higher"]
-    RANK --> BIAS["Bias check: warn if one genre dominates the top K"]
-    RANK --> LISTEN["Listen link per song: opens a YouTube or Spotify search"]
+        RANK --> DIV["Mix it up (optional toggle): max 2 songs per genre in the top K"]
+    DIV --> CONF["Confidence score: MBTI-only is low, with history is higher"]
+    DIV --> BIAS["Bias check: warn if one genre dominates the top K"]
+    DIV --> LISTEN["Listen link per song: opens a YouTube or Spotify search"]
 
     subgraph RAG["Gemini assistant with retrieval (PLANNED)"]
         ASK["User asks a question"]

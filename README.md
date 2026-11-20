@@ -44,7 +44,7 @@ This system is useful, but it can still be biased. It may over-prioritize popula
 ---
 ## System Architecture
 
-This diagram shows the whole system. Green boxes are built (the Module 3 recommender and its 65-song catalog). Yellow boxes are the planned final-project extension: the MBTI profile builder, confidence score, bias check, and Gemini assistant with verification.
+This diagram shows the whole system. Green boxes are built (the Module 3 recommender and its 75-song catalog). Yellow boxes are the planned final-project extension: the MBTI profile builder, confidence score, bias check, and Gemini assistant with verification.
 
 ![System architecture](assets/architecture.png)
 
@@ -69,7 +69,7 @@ Source: [diagrams/mbti_types.mmd](diagrams/mbti_types.mmd)
    ```bash
    python -m venv .venv
    source .venv/bin/activate      # Mac or Linux
-   .venv\Scripts\activate         # Windows
+   .venv\Scripts\activate```      # Windows
 
 2. Install dependencies
 
@@ -97,7 +97,7 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Sample Recommendation Output
 
-Loaded songs: 20
+```Loaded songs: 20
 
 Top recommendations:
 
@@ -130,9 +130,6 @@ Top recommendations:
 **Screenshot or video** *(optional)*: <!-- Insert a screenshot or demo video link here -->
 
 ---
-
-## Experiments You Tried
-
 ## Experiments You Tried
 
 I tested four user profiles and looked at the top 5 results for each.
@@ -376,8 +373,8 @@ Indie Pop Romantic felt the most off. Stupid Song(melancholic) ranked #1 above H
 ## Limitations and Risks
 
 My first run only scored genre and mood. Every score was a whole number and no energy line appeared, because `score_song` was reading different key names than my profiles used (e.g. `energy` vs. `target_energy`). I fixed the keys and reran, and the results above are from the fixed version.
-
 ---
+
 ### Experiment 1: Genre weight (2.0 down to 0.0)
 
 For Indie Pop Romantic, lowering genre to 0.5 put Heaven, the only romantic
