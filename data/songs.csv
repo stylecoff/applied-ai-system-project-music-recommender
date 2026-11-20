@@ -19,3 +19,58 @@ id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness
 18,What Are You Doing Later,Evangeline,electronic,dreamy,0.68,128,0.82,0.72,0.27
 19,Meet Me Where I Am At,Evangeline,country,hopeful,0.57,106,0.88,0.58,0.74
 20,Swan Lake,Pyotr Ilyich Tchaikovsky,classical,dramatic,0.44,76,0.59,0.35,0.91
+21,Back to Friends,SOMBR,indie pop,melancholic,0.55,100,0.30,0.55,0.35
+22,Mary on a Cross,Ghost,rock,moody,0.75,100,0.48,0.55,0.05
+23,Fallen Angel,Jennie,k-pop,moody,0.60,100,0.40,0.65,0.25
+24,New Trick,Rosé,k-pop,playful,0.65,110,0.55,0.70,0.20
+25,Empire State of Mind (Part II) Broken Down,Alicia Keys,r&b,hopeful,0.45,91,0.25,0.55,0.55
+26,Lavender's Blue,Nursery Rhymes 123,children's,playful,0.25,90,0.70,0.45,0.85
+27,U + Me = <3,Olivia Rodrigo,indie pop,romantic,0.45,85,0.40,0.50,0.55
+28,Less Than a Lover,Jennie,k-pop,melancholic,0.50,95,0.35,0.60,0.30
+29,Purple,Olivia Rodrigo,indie pop,dreamy,0.50,100,0.45,0.50,0.40
+30,Bang Bang,IVE,k-pop,playful,0.85,125,0.65,0.75,0.10
+31,"I Love You, I'm Sorry",Gracie Abrams,indie pop,melancholic,0.40,70,0.20,0.45,0.60
+32,Drop Dead,Olivia Rodrigo,indie pop,melancholic,0.60,110,0.45,0.55,0.30
+33,The Cure,Olivia Rodrigo,indie pop,hopeful,0.50,95,0.45,0.50,0.40
+34,Mean It,Lauv,pop,romantic,0.62,100,0.50,0.60,0.30
+35,Pumped Up Kicks,Foster the People,indie pop,playful,0.71,128,0.96,0.73,0.15
+36,Honeybee,Olivia Rodrigo,indie pop,romantic,0.45,95,0.60,0.55,0.60
+37,Godzilla,Eminem,hip hop,angry,0.85,164,0.30,0.80,0.05
+38,Hootie Frutti,Katseye,k-pop,playful,0.80,115,0.70,0.75,0.10
+39,18,One Direction,pop,nostalgic,0.45,80,0.35,0.50,0.50
+40,8 Letters,Why Don't We,pop,romantic,0.60,100,0.45,0.62,0.25
+41,Hold Me Down,5 Alarm,country,romantic,0.60,110,0.50,0.55,0.40
+42,The Bakery,Ophelia Wilde,ambient,chill,0.15,70,0.60,0.30,0.85
+43,Spell,NIKI,r&b,dreamy,0.45,90,0.35,0.60,0.45
+44,I Have a Dream (Remix),Westlife,pop,hopeful,0.65,115,0.60,0.65,0.20
+45,Everything at Once,Lenka,indie pop,playful,0.70,120,0.70,0.65,0.30
+46,The Show,Lenka,indie pop,happy,0.70,119,0.70,0.65,0.25
+47,All We Know,The Chainsmokers,pop,nostalgic,0.55,90,0.35,0.60,0.12
+48,You're the Inspiration,Chicago,rock,romantic,0.35,76,0.35,0.45,0.60
+49,Hello My Love,Westlife,pop,romantic,0.50,90,0.45,0.55,0.30
+50,Iris,The Goo Goo Dolls,rock,romantic,0.55,156,0.32,0.32,0.03
+51,Cold Coffee,NCT Dream,k-pop,comforting,0.65,105,0.55,0.65,0.25
+52,Teatime at the Cottage,Ophelia Wilde,ambient,relaxed,0.12,68,0.65,0.30,0.88
+53,Carousel,Melanie Martinez,pop,dreamy,0.52,97,0.27,0.50,0.35
+54,Eldest Daughter,Taylor Swift,pop,melancholic,0.45,95,0.35,0.50,0.45
+55,Happiest,Mark Lee,r&b,comforting,0.55,95,0.60,0.62,0.40
+56,Love You More,Two Cheers,indie pop,romantic,0.55,100,0.55,0.55,0.40
+57,Paris in the Rain,Lauv,pop,romantic,0.62,100,0.49,0.66,0.18
+58,Ain't in LA,Adela,pop,dreamy,0.55,100,0.45,0.60,0.30
+59,To the Bone,Pamungkas,indie pop,romantic,0.40,75,0.30,0.45,0.60
+60,Undressed,SOMBR,indie pop,romantic,0.50,95,0.40,0.55,0.35
+61,Never Gonna Give You Up,Rick Astley,pop,happy,0.83,113,0.92,0.73,0.10
+62,We Go Up,BABYMONSTER,k-pop,intense,0.85,130,0.55,0.75,0.10
+63,Goo Goo Muck,The Cramps,rock,playful,0.80,150,0.70,0.60,0.05
+64,Animal,Katseye,k-pop,intense,0.75,115,0.50,0.75,0.15
+65,Psycho,BABYMONSTER,k-pop,intense,0.85,125,0.45,0.75,0.10
+66,Toxicity,System of a Down,rock,intense,0.92,78,0.45,0.40,0.01
+67,Walking on Sunshine,Katrina and the Waves,rock,happy,0.87,110,0.96,0.71,0.07
+68,Shut Up and Dance,WALK THE MOON,rock,happy,0.87,128,0.62,0.60,0.01
+69,Monday Loop,Tomppabeats,lofi,nostalgic,0.25,78,0.45,0.55,0.60
+70,Affection,Jinsang,lofi,nostalgic,0.30,80,0.50,0.60,0.55
+71,Intro,The xx,indie pop,focused,0.40,100,0.20,0.45,0.30
+72,Gooey,Glass Animals,indie pop,focused,0.55,91,0.45,0.65,0.20
+73,Ribs,Lorde,indie pop,nostalgic,0.50,128,0.35,0.50,0.25
+74,Space Song,Beach House,indie pop,nostalgic,0.50,147,0.30,0.45,0.15
+75,Dreams Tonite,Alvvays,indie pop,nostalgic,0.60,140,0.55,0.50,0.20

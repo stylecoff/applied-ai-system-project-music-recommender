@@ -1,0 +1,75 @@
+flowchart TD
+    A["Streamlit app: user enters a 4-letter MBTI code"] --> G1{"Guardrail: valid code?"}
+    G1 -- "no" --> ERR["Reject with clear error"]
+    G1 -- "yes" --> CODE["Valid code, for example INFP"]
+
+    subgraph PAIRS["Four preference pairs: the letters build the taste profile"]
+        IE["E / I: where energy goes<br/>I calmer and quieter, E livelier and louder"]
+        SN["S / N: how information is taken in<br/>S grounded and acoustic, N dreamy and electronic"]
+        TF["T / F: how decisions are made<br/>T focused and cooler, F warm and emotional"]
+        JP["J / P: how life is organized<br/>J steady tempo, P spontaneous and faster"]
+    end
+
+    CODE --> IE
+    CODE --> SN
+    CODE --> TF
+    CODE --> JP
+
+    IE --> GENRE["Genre from I/E + S/N: IN indie pop, IS lofi, EN pop, ES rock"]
+    SN --> GENRE
+    IE --> MOOD["Mood from I/E + T/F: IT focused, IF nostalgic, ET intense, EF happy"]
+    TF --> MOOD
+    IE --> NUM["Numeric targets: energy, danceability, acousticness, valence, tempo"]
+    SN --> NUM
+    TF --> NUM
+    JP --> NUM
+    GENRE --> PROFILE["Taste profile"]
+    MOOD --> PROFILE
+    NUM --> PROFILE
+
+    CODE --> TYPEINFO["Type lookup: 16 types in 4 families, name and family are display labels only. See diagrams/mbti_types.mmd"]
+    TYPEINFO --> EXPL["Explainer panel: what MBTI is, plus the type name, family and description"]
+
+    HIST[("Top tracks snapshot from Receiptify, not live Spotify")] --> BL["Blend with listening history, if provided"]
+    PROFILE --> BL
+
+    CSV[("songs.csv: 75 songs, hand-estimated features")] --> SCORE
+    BL --> SCORE["score_song: genre and mood match plus closeness on numeric features"]
+    SCORE --> RANK["recommend_songs: sort and return top K with reasons"]
+
+    RANK --> CONF["Confidence score: MBTI-only is low, with history is higher"]
+    RANK --> BIAS["Bias check: warn if one genre dominates the top K"]
+    RANK --> LISTEN["Listen link per song: opens a YouTube or Spotify search"]
+
+    subgraph RAG["Gemini assistant with retrieval (PLANNED)"]
+        ASK["User asks a question"]
+        RET["Retrieve: top K songs, taste profile, MBTI explainer text"]
+        GEM["Gemini API: answers using only the retrieved context"]
+        VER["Verification: every song named must exist in songs.csv"]
+    end
+
+    ASK --> RET
+    RANK --> RET
+    EXPL --> RET
+    RET --> GEM
+    GEM --> VER
+    VER -- "unknown song found" --> FALL["Fallback: show catalog-only answer and log the error"]
+    VER -- "all songs valid" --> ANS["Assistant answer"]
+
+    CONF --> OUT["Output: songs, reasons, confidence, warnings, links, assistant answer"]
+    BIAS --> OUT
+    LISTEN --> OUT
+    ANS --> OUT
+    FALL --> OUT
+    OUT --> HITL["Human in the loop: user edits a letter or history and re-runs"]
+    HITL -.-> A
+
+    TESTS["Reliability tests: pytest on validation, scoring, ranking, answer verification"] -.-> G1
+    TESTS -.-> SCORE
+    TESTS -.-> RANK
+    TESTS -.-> VER
+
+    classDef built fill:#d4edda,stroke:#2e7d32,color:#000
+    classDef planned fill:#fff3cd,stroke:#b58900,color:#000
+    class CSV,SCORE,RANK built
+    class A,G1,ERR,CODE,IE,SN,TF,JP,GENRE,MOOD,NUM,PROFILE,TYPEINFO,EXPL,HIST,BL,CONF,BIAS,LISTEN,ASK,RET,GEM,VER,FALL,ANS,OUT,HITL,TESTS planned

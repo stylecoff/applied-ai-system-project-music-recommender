@@ -42,6 +42,23 @@ This is a content-based approach because it uses the actual characteristics of t
 This system is useful, but it can still be biased. It may over-prioritize popular or viral songs, ignore older songs that fit the user’s mood, or become too narrow if the profile is built around one genre or one emotional state. It can also over-focus on comfort and miss songs that are good for reflection or returning to reality. In short, it works well for matching taste, but it is still a simplified version of how real recommenders behave.
 
 ---
+## System Architecture
+
+This diagram shows the whole system. Green boxes are built (the Module 3 recommender and its 65-song catalog). Yellow boxes are the planned final-project extension: the MBTI profile builder, confidence score, bias check, and Gemini assistant with verification.
+
+![System architecture](assets/architecture.png)
+
+Source: [diagrams/architecture.mmd](diagrams/architecture.mmd)
+
+### MBTI types and how they map to songs
+
+All 16 types, grouped into four families. The family and type name are display labels only. Songs are matched from the four letters.
+
+![MBTI types and song matching](assets/mbti_types.png)
+
+Source: [diagrams/mbti_types.mmd](diagrams/mbti_types.mmd)
+
+---
 
 ## Getting Started
 

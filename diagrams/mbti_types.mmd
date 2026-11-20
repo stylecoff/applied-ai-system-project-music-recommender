@@ -1,0 +1,44 @@
+flowchart LR
+    CODE["Valid 4-letter code: E/I + S/N + T/F + J/P"] --> NT
+    CODE --> NF
+    CODE --> SJ
+    CODE --> SP
+
+    subgraph NT["Analysts (NT types)"]
+        INTJ["INTJ Architect<br/>indie pop, focused"]
+        INTP["INTP Logician<br/>indie pop, focused"]
+        ENTJ["ENTJ Commander<br/>pop, intense"]
+        ENTP["ENTP Debater<br/>pop, intense"]
+    end
+
+    subgraph NF["Diplomats (NF types)"]
+        INFJ["INFJ Advocate<br/>indie pop, nostalgic"]
+        INFP["INFP Mediator<br/>indie pop, nostalgic"]
+        ENFJ["ENFJ Protagonist<br/>pop, happy"]
+        ENFP["ENFP Campaigner<br/>pop, happy"]
+    end
+
+    subgraph SJ["Sentinels (SJ types)"]
+        ISTJ["ISTJ Logistician<br/>lofi, focused"]
+        ISFJ["ISFJ Defender<br/>lofi, nostalgic"]
+        ESTJ["ESTJ Executive<br/>rock, intense"]
+        ESFJ["ESFJ Consul<br/>rock, happy"]
+    end
+
+    subgraph SP["Explorers (SP types)"]
+        ISTP["ISTP Virtuoso<br/>lofi, focused"]
+        ISFP["ISFP Adventurer<br/>lofi, nostalgic"]
+        ESTP["ESTP Entrepreneur<br/>rock, intense"]
+        ESFP["ESFP Entertainer<br/>rock, happy"]
+    end
+
+    NT --> PROFILE
+    NF --> PROFILE
+    SJ --> PROFILE
+    SP --> PROFILE
+    PROFILE["Songs are matched from the four letters, not from the type name or family"]
+
+    classDef ref fill:#dbe7f5,stroke:#3b6aa0,color:#000
+    classDef planned fill:#fff3cd,stroke:#b58900,color:#000
+    class CODE,PROFILE planned
+    class INTJ,INTP,ENTJ,ENTP,INFJ,INFP,ENFJ,ENFP,ISTJ,ISFJ,ESTJ,ESFJ,ISTP,ISFP,ESTP,ESFP ref
