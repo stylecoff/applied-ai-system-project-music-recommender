@@ -1,58 +1,40 @@
-# 🎧 Model Card: Music Recommender Simulation
+## 🎧 Final project update: VibeFinder (MBTI starting profile, assistant, and trust checks)
 
-## 1. Model Name
+*Paste this section at the end of `model_card.md`.*
 
-VibeFinder 1.0
+### Intended use
+A classroom music recommender for **new listeners with no history**. It turns four MBTI letters into a starting taste profile and recommends five songs from a 75-song catalog. It is a learning project, not a production recommender, and it should not be used to make decisions about people.
 
----
+### How it works (short)
+- **Scoring:** the Module 3 content-based scorer (genre +2.0, mood +1.0, then closeness on energy, valence, acousticness, danceability, tempo; maximum 7.1).
+- **MBTI to profile:** each letter nudges the numeric targets, and letter pairs pick a genre and a mood. Type names and families are display labels only.
+- **History blend:** optional picked songs are mixed into the profile (20%, 40%, or 60% for 1, 2, or 3 or more songs).
+- **Trust checks:** a confidence score (30% to 75%, a rule of thumb) and a bias check that warns about one-genre lists.
+- **Assistant:** Gemini answers from retrieved data only (top 10 songs, the profile, MBTI text). Every song it names is verified, and a catalog-only fallback is used if anything fails.
 
-## 2. Intended Use
+### Data
+- 75 songs in `data/songs.csv`: 20 starter songs (some fictional), 45 songs from my own Receiptify top tracks, and 10 added to cover missing genre and mood combinations.
+- Genre and mood labels are my judgment. Numeric features are hand-estimated, not measured from audio.
+- The listening history is a one-month snapshot of one person, not a live Spotify connection.
 
-This recommender is meant for a small classroom-style music demo. It helps a user get a first list of songs based on a taste profile. The system assumes a user has a favorite genre, a favorite mood, and a rough idea of how energetic or acoustic they want the music to feel. It is not built for a real commercial music app. It is meant to show how simple content-based recommendations work.
+### Evaluation (`python -m src.evaluate`)
+- All 16 types receive a top song matching both genre and mood (16/16), five songs each, sorted by score, identical on a repeat run.
+- **Every type's default top 5 comes from one genre** (average 1.0 distinct genres), and the bias check warns for 16/16.
+- Only 9 different top songs appear across the 16 types, and 15 pairs of types receive the same five songs in a different order.
+- "Mix it up" keeps every genre at 2 or fewer songs (16/16), lowering the average match from 84.2% to 74.7%.
+- The assistant's verification and fallback were tested with a fake model (no network). Live Gemini availability varies, which is why the fallback exists.
 
----
+### Limitations and biases
+- **Genre bias:** the genre bonus is double the mood bonus, so genre decides most of the list.
+- **Stereotyping:** the MBTI mapping gives every "I" calmer music and every "E" louder music. It is a design choice, not evidence, and MBTI itself is debated.
+- **Catalog bias:** the catalog reflects one person's taste and a small set of genres, so some listeners will find nothing that fits.
+- **Popularity and recency:** the system has no notion of either, and it never learns from a user's reactions.
+- **Verification limit:** the assistant check confirms which songs are named, not that every sentence of the explanation is accurate.
 
-## 3. How the Model Works
+### Misuse and mitigation
+- Someone could treat the MBTI result as a fact about a person. The app labels it a rough guess, shows a confidence score, and explains where the link comes from.
+- The assistant could be asked off-topic questions or told to ignore its rules. Questions are cleaned and cut to 300 characters, kept in a marked block, and any answer naming a song outside the retrieved list is replaced by the fallback.
+- No keys, logs, or screenshots with account names are committed.
 
-This recommender compares each song to the user's taste profile. It looks at genre, mood, energy, tempo, valence, danceability, and acousticness. It gives a bigger score when a song matches the user's favorite genre and mood. Then it checks how close the song's numbers are to the user's target values. This makes the system easy to understand and easy to adjust.
-
----
-
-## 4. Data
-
-The catalog has 20 songs. It includes many genres such as pop, lofi, rock, synthwave, indie pop, hip hop, punk, jazz, folk, r&b, electronic, country, classical, and more. The moods include happy, chill, intense, relaxed, moody, focused, romantic, melancholic, nostalgic, and angry. I did not add or remove songs. The dataset is small, so it misses some real-world music tastes like very niche genres, strong cultural trends, and many kinds of emotional states.
-
----
-
-## 5. Strengths
-
-The system works best when a user's profile is clear and simple. A user who likes pop and happy songs gets good results. A user who likes chill lofi songs also gets very believable recommendations. The scoring is easy to explain. It is also easy to see why a song was picked, because the system gives a reason string like “genre match” or “energy close to target.”
-
----
-
-## 6. Limitations and Bias
-
-The biggest problem is that genre and mood are too powerful. A song that matches the user's favorite genre often jumps ahead even when it does not fit the rest of the profile. This can create a filter bubble. A user may keep getting songs from the same style instead of a wider mix. The catalog is also small, so the system does not see many types of music.
-
----
-
-## 7. Evaluation
-
-I tested a few user profiles: High-Energy Pop, Chill Lofi, Deep Intense Rock, and Indie Pop Romantic. I compared the top songs for each one and looked at whether the results made sense. The biggest surprise was that “Gym Hero” kept showing up for happy pop users. This happened because the system loves exact genre and mood matches first. A pop song that is also happy gets a big bonus. After that, the model only adds a little more for energy and tempo. So “Gym Hero” can stay near the top even when a different happy pop song might feel more fitting.
-
-I also compared High-Energy Pop with Chill Lofi. The first profile moved toward bright and punchy songs. The second profile moved toward slow, quiet, acoustic tracks. That made sense because the energy target changed a lot. The system responded to energy, but it still favored the same genre and mood buckets.
-
-The biggest mismatch happened with Indie Pop Romantic. The model liked “Stupid Song” because it matched the indie pop genre, even though it felt more melancholic than romantic. When I lowered the genre weight, “Heaven” jumped up. That made more sense to me because it matched the mood better. This showed that the system was relying too much on the genre label.
-
----
-
-## 8. Future Work
-
-I would make the model less dependent on exact genre matches. I would add more balanced scoring so mood and energy matter more. I would also add diversity controls so the top results do not all come from one style. A better system could explain recommendations in plain words, like “This song fits your mood but is a bit different from your usual genre.” I would also want it to handle more complex tastes, such as “happy but low energy” or “romantic but still energetic.”
-
----
-
-## 9. Personal Reflection
-
-I learned that recommenders are simple rules under the hood, even when they look smart. I was surprised by how much one exact genre match could control the whole ranking. This changed how I think about music apps. They can seem personal, but they often stay inside a small comfort zone unless the scoring is designed to explore beyond it.
-
+### AI collaboration
+I built this extension with an AI assistant (Claude) and used Gemini inside the app. I ran the tests, the evaluation, and the app myself. The AI was wrong at least once: it picked a backup Gemini model that Google had already closed to new users, which I found by running the live check. It also first printed my API key in an error message, so I replaced the key and the code now hides keys in errors.
